@@ -56,5 +56,6 @@ public class ResultPanel extends JPanel {
         });
 
         this.add(backButton);
+        results.clear();
     }
 }

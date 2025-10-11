@@ -81,20 +81,50 @@ public class MakeSurveyAlone extends JPanel {
         if (choice == 0) {
             // שליחה עכשיו
             List<PollData> data = getSurveyData();
+
+            for (PollData poll : data) {
+                if (poll.getOptions().size() < 2) {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Each question must have at least 2 options.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    return;
+                }
+            }
+
             new Thread(() -> {
                 for (PollData poll : data) {
                     bot.sendPoll(poll.getQuestion(), poll.getOptions());
                 }
-                JOptionPane.showMessageDialog(this, "Survey will be sent now!");
                 SwingUtilities.invokeLater(() -> {
                     frame.setContentPane(new WaitingForResultPanel());
                     frame.revalidate();
                     frame.repaint();
                 });
+                JOptionPane.showMessageDialog(this, "Survey will be sent now!");
+
 
             }).start();
 
         } else if (choice == 1) {
+
+            List<PollData> data = getSurveyData();
+
+
+            for (PollData poll : data) {
+                if (poll.getOptions().size() < 2) {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Each question must have at least 2 options.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    return;
+                }
+            }
+
             // שליחה מאוחרת
             String delayStr = JOptionPane.showInputDialog(
                     this,
@@ -111,7 +141,6 @@ public class MakeSurveyAlone extends JPanel {
             try {
                 int delay = Integer.parseInt(delayStr);
 
-                List<PollData> data = getSurveyData();
 
                 new Thread(() -> {
                     try {
