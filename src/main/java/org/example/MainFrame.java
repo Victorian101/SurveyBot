@@ -44,6 +44,13 @@ public class MainFrame extends JFrame {
 
         });
         button2.setBounds(400, 450, 100, 50);
+        button2.addActionListener(e -> {
+            HelpMe helpMe = new HelpMe(this, bot);
+            this.setContentPane(helpMe);
+            this.revalidate();
+            this.repaint();
+
+        });
         home.add(button2);
         home.add(button1);
 
