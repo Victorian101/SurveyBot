@@ -174,6 +174,11 @@ public class MyBot extends TelegramLongPollingBot {
         return pass >= 5 * 60 * 1000;
     }
 
+    public int getCommunitySize() {
+        return registered.size();
+    }
+
+
     @Override
     public String getBotUsername() {
         return "SurvyBot_bot";

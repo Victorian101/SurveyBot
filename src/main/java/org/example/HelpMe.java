@@ -94,6 +94,15 @@ public class HelpMe extends JPanel {
             );
 
             if (choice == 0) { // Send to Telegram
+                if (bot.getCommunitySize() < 3) {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "You need at least 3 users in the community to start a survey.",
+                            "Not enough users",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                    return;
+                }
                 int sendChoice = JOptionPane.showOptionDialog(
                         this,
                         "Do you want to send the survey now or schedule it for later?",

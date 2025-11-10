@@ -67,6 +67,15 @@ public class MakeSurveyAlone extends JPanel {
     }
 
     private void openSendOptions() {
+        if (bot.getCommunitySize() < 3) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "You need at least 3 users in the community to start a survey.",
+                    "Not enough users",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         int choice = JOptionPane.showOptionDialog(
                 this,
                 "Do you want to send the survey now or later?",
